@@ -24,7 +24,9 @@ xhttp = new XMLHttpRequest();
 xhttp.addEventListener('load', processResponse);
 
 xhttp.open('GET', sendWiki);
-xhttp.setRequestHeader( 'Api-User-Agent', 'cazza822@gmail.com' );
+xhttp.setRequestHeader('Api-User-Agent', 'cazza822@gmail.com');
+xhttp.setRequestHeader('action', 'query');
+xhttp.setRequestHeader('origin', 'https://carwyyn.github.io/');
+
 
 xhttp.send();
-

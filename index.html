@@ -1,16 +1,72 @@
 <!DOCTYPE html>
+
+<!--
+
+
+Site that uses your current location to find out the local weather, any local flood alerts or high river levels, and produces some news coverage on recent weather, as well as handy guide to the next nice day
+
+
+-->
+
+
 <html>
 <head>
     <title>My API</title>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
-    <link rel="stylesheet" href="style.css">
+    
+    <link rel="stylesheet" type="text/css" href="style.css">
+    
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
 </head>
 
 <body>
-<!--    <script src="script.js"></script> --> 
-    <script src="wikipedia.js"></script>
+    
+    
+    
+    <header class="mainHeader" id="mainHeader">
+        
+        
+        <h1>
+            Your Weather Watcher
+        </h1>
+        
+        <h2>
+            <i>Keep with us to let us keep you</i>
+        </h2>
+        
+        
+        <form onsubmit="floodAlert(); searchingGuardian(); return false">
+            <label for="date">Post Code:
+            <input type="text" id="search_termPostCode">
+            </label>
+            <input type="button" id="search_buttonPostCode" value="Search">
+        </form>
+        
+        
+        
+        
+    
+    </header>
+    
+    
+    
+    
+    <footer>
+    
+    
+    
+    </footer>
+     
+    
+    <script src=NRW.js></script>
+    
+    <script src=postcode.js></script> 
+    
+    <script src= weather.js></script>
+
+    <script src=guardianWeather.js></script> 
+    
 </body>
 
 

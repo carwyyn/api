@@ -1,3 +1,50 @@
+var processResponseInnerWeather = function(){
+    var data = JSON.parse(this.response);
+    console.log(data);
+    var body = document.getElementsByTagName('body')[0];
+    var weather_str = "The Weather at the moment is " + data.weather[0].description;
+    console.log(weather_str);
+        
+        
+    //More accurate weather background once we know the postcode
+        
+    var backHead = document.querySelector("#mainHeader");
+    var weatherIs = data.weather[0].id;
+    if (weatherIs > 200 && weatherIs < 598){
+        backHead.style.backgroundImage = 'url("rain.gif")';
+    } else if (weatherIs > 599 && weatherIs < 698){
+        backHead.style.backgroundImage = 'url("snow.gif")';
+    } else if (weatherIs > 699 && weatherIs< 798){
+       backHead.style.backgroundImage = 'url("fog.jpg")';
+    } else if (weatherIs === 800){
+        backHead.style.backgroundImage = 'url("sun.jpg")';
+    } else if (weatherIs > 800 && weatherIs< 898){
+        backHead.style.backgroundImage = 'url("cloud.gif")';
+    } else {
+        backHead.style.backgroundImage = 'url("sun.jpg")';
+    };
+    
+    var text = document.createTextNode(weather_str);
+    var h3 = document.createElement('h3');
+    var header = document.createElement('header');
+    header.className += "weatherHeader"; 
+    h3.appendChild(text);
+    header.appendChild(h3);
+    body.insertBefore(header, body.childNodes[3]); 
+    
+};
+
+var getWeatherFromPostcode = function(lat, lng){
+    var url = "http://api.openweathermap.org/data/2.5/weather";
+    var query_url = url + "?" + "lat=" + lat + "&lon=" + lng + "&appid=" + "bd9103bac697c788ceb38ef0aaac11d7"; //API key
+    console.log(query_url);
+    var xhttp = new XMLHttpRequest(); //send off weather request
+    xhttp.addEventListener('load', processResponseInnerWeather);
+    xhttp.open('GET', query_url);
+    xhttp.send();
+};
+
+
 // SEE THE LOCAL RIVER LEVELS
 var body = document.getElementsByTagName('body')[0];
 var localRiverLevel = function(lat, lng){
@@ -5,10 +52,7 @@ var localRiverLevel = function(lat, lng){
     //CODE FROM NATURAL RESOURCES WALES
     
     $(function() {
-        var params = {
-            // Request parameters
-        };
-      
+        
         $.ajax({
             url: "https://api.naturalresources.wales/riverlevels/v1/distance/10000/latlon/" + lat + "/" + lng,
             beforeSend: function(xhrObj){
@@ -155,13 +199,13 @@ var floodAlert = function(){
         console.log(county);
         console.log(lat);
         console.log(lng);
-        
+        getWeatherFromPostcode(lat, lng);
     });
 };
 
-window.onload = function(){
-    console.log('ready');
-    var search_button = document.getElementById('search_buttonPostCode');
-    search_button.addEventListener('click', floodAlert);
-};
+
+console.log('ready');
+var search_button = document.getElementById('search_buttonPostCode');
+search_button.addEventListener('click', floodAlert);
+
 

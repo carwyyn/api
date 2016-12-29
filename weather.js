@@ -51,8 +51,6 @@ var gettingTheWeatherBackground = function(){
             xhttp.addEventListener('load', processResponse);
             xhttp.open('GET', query_url);
             xhttp.send();
-
-
         };
     
     var backHead = document.querySelector(".mainHeader");

@@ -4,38 +4,79 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
     border: 0;
     font-size: 100%;
     font: inherit;
+    font-family: 'Nunito Sans', sans-serif;
     vertical-align: baseline;
-};
+}
+
+/*
+
+===CONTENTS===
+
+1) General
+2) Header
+3) Sections
+4) Footer
+
+*/
+
+
+
+/*
+
+--GENERAL--
+
+*/
 
 body {
     width: 98vw;
+    
 }
 
-.mainHeader {
-    width: 100%;
-    height: 90vh;
-    background-color: aliceblue;
-    background-size: cover;
+header {
+    overflow: scroll;
 }
 
-.floodHeader{
-    width: 100%;
-    height: 10%;
-    background-color: beige;
-    text-align: center;
-}
+
+
 
 h1 {
-    font-size: 5em;
+    font-size: 4em;
     text-align: center;
+    font-family: 'Nunito Sans', sans-serif;
 }
 
 h2 {
+    font-size: 1em;
     margin: 0 10% 0 70%;
+    font-family: 'Nunito Sans', sans-serif;
+}
+
+h3 {
+    font-size: 1em;
+    text-align: center;
+    font-family: 'Nunito Sans', sans-serif;
+}
+
+h4{
+    font-size: 1.3em;
+    text-align: center;
+    font-family: 'Nunito Sans', sans-serif;
+}
+
+h5 {
+    font-size: 1em;
+    text-align: center;
+    font-family: 'Nunito Sans', sans-serif;
+}
+
+h6 {
+    font-size: 1em;
+    text-align: center;
+    font-family: 'Nunito Sans', sans-serif;
 }
 
 footer {
-    background-color: aquamarine;
+    background-color: #eeaa7b;
     width: 100%;
     height: 5vw;
 }
@@ -43,18 +84,174 @@ footer {
 section {
     width: 100%;
     height: 100vh;
+    min-height: 400px;
+    overflow: scroll;
     background-size: cover;
     background-position:center;
     background-blend-mode: screen;
-    opacity: 0.5;
+   
 }
+
+
+/*
+
+--HEADER--
+
+*/
+
+.mainHeader {
+    width: 100%;
+    height: 80vh;
+    background-color: #07889B;
+    background-size: cover;
+    background-position:center;
+    background-blend-mode: screen;
+}
+
+.floodHeader{
+    width: 98%;
+    height: 10%;
+    background-color: #E37222;
+    text-align: center;
+    padding: 1%;
+}
+
+
+
+#search_buttonPostCode {
+    text-align: center;
+    border-radius: 200px;
+    display: block;
+    margin: auto;
+    margin-top: 10px;
+    text-transform: capitalize;
+    background: #eeaa7b
+}
+
+#search_buttonPostCode:hover{
+    background: rgba(0,0,100,0.4);
+}
+
+#search_termPostCode {
+    display: block;
+    margin: auto;
+    background: white;
+    filter: contrast(70%);
+    border-radius: 100px;
+    border: 5px;
+    border-color: red;
+    padding: 1% 4%;
+    margin-top: 3%;
+    color: black;
+    text-transform: uppercase;
+    text-decoration-color: aqua;
+    opacity: 0.8;
+}
+
 form {
     text-align: center;
 }
+
+
+
+
+
+
+
+.guardian a {
+    text-decoration: none;
+}
+.guardian button {
+    text-align: center;
+    border-radius: 200px;
+    display: block;
+    margin: auto;
+    margin-top: 2%;
+    text-transform: capitalize;
+    background: #eeaa7b;
+    padding: 3%;
+    
+}
+
+.guardian button:hover {
+    background: rgba(0,0,100,0.4);
+}
+
+.guardian h3 {
+    vertical-align: middle;
+    text-align: center;
+    opacity: 1;
+    padding-top: 20%;
+    font-size: 10vh;
+    padding: 10%;
+    color: black;
+    -webkit-text-fill-color: white; /* Will override color (regardless of order) */
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+    text-transform: uppercase;
+
+}
+
+
+
 section p {
     color: aqua;
     opacity: 1;
     text-align: center;
     margin: auto;
     
+}
+
+.floodHeader{
+    width: 98%;
+    height: 10%;
+    background-color: #E37222;
+    text-align: center;
+    padding: 1%;
+ 
+}
+
+
+.riverLevelSection {
+    background: url(riverBack.jpg);
+    background-size: cover;
+    background-position:center;
+    background-repeat: no-repeat;
+    
+}
+
+.oneRiver {
+    width: 30%;
+    display: inline-block;
+    height: 70%;
+    margin-top: 10%;
+    margin-bottom: 10%;
+    margin-left: 2%;
+}
+
+.oneRiver > * {
+    margin: 30%;
+    color: chartreuse;
+}
+
+.weatherHeader {
+    background: #e37222;
+}
+
+.floodInfoLink {
+    background: #07889B;
+    border-radius: 100px;
+}
+
+.floodInfoLink a {
+    color: chartreuse;
+}
+
+#mapid {
+    height: 80%;
+    width: 90%;
+    margin: auto;
+}
+.mapThing {
+    background: teal;
 }

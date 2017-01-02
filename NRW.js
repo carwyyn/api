@@ -32,13 +32,21 @@ var processResponse = function(){
     h3.appendChild(text);
     header.appendChild(h3);
     body.insertBefore(header, body.childNodes[0]);    
+    
+    
 };
+
+
+
 
 var body = document.getElementsByTagName('body')[0];
 xhttp = new XMLHttpRequest();
 xhttp.addEventListener('load', processResponse);
 xhttp.open('GET', url);
 xhttp.setRequestHeader('Content-Type', 'text/plain');
-xhttp.setRequestHeader('Ocp-Apim-Subscription-Key', 'c5b39d32fe8b42debe93890722276ca3')
+xhttp.setRequestHeader('Ocp-Apim-Subscription-Key', 'c5b39d32fe8b42debe93890722276ca3');
+xhttp.setRequestHeader('Allow-Control-Allow-Origin', '*');
 xhttp.send();
 console.log("ready");
+
+

@@ -30,7 +30,7 @@ var processResponseInnerWeather = function(){
     header.className += "weatherHeader"; 
     h3.appendChild(text);
     header.appendChild(h3);
-    body.insertBefore(header, body.childNodes[3]); 
+    body.insertBefore(header, body.childNodes[0]); 
     
 };
 
@@ -72,10 +72,48 @@ var localRiverLevel = function(lat, lng){
             var section = document.createElement('section');
             section.className = "riverLevelSection";
             
+            var mapDiv = document.createElement('div');
+            mapDiv.setAttribute("id", "mapid");
+            
+            
+            var sectionMap = document.createElement('section');
+            sectionMap.setAttribute("class", "mapThing");
+            sectionMap.appendChild(mapDiv);
+            
+            body.insertBefore(sectionMap, body.childNodes[3]);
+        
+            var mymap = L.map('mapid').setView([lat, lng], 11);
+     
+            
+            
+            L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+                attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
+                maxZoom: 18,
+                id: 'rivermaps.2ho23pf7',
+                accessToken: 'pk.eyJ1Ijoicml2ZXJtYXBzIiwiYSI6ImNpeGdraWxxMjAwMGwydHAzbjJtN2hqdG4ifQ.bIigaZZRBCzYqW70_ivtGA'
+            }).addTo(mymap);
+            
+            var marker = L.marker([lat, lng]).addTo(mymap);
+            marker.bindPopup("Your location").openPopup();
+            
             while (floodcount <3){
                 
                 var oneRiver = document.createElement('div');
                 oneRiver.className = "oneRiver";
+                
+                var coordinates = stuff.search("-");
+                coordinates = stuff.substring(coordinates, (coordinates+35));
+                console.log(coordinates);
+                
+                var coordinates = coordinates.split(", ");
+                var riverLng = coordinates[0];
+                var riverLat = coordinates[1];
+                
+                console.log (riverLng);
+                console.log(riverLat);
+                
+                var marker = L.marker([riverLat, riverLng]).addTo(mymap);
+                
                 
                 var riverName = stuff.search("NameEN");
                 riverName = riverName + 11;
@@ -90,6 +128,14 @@ var localRiverLevel = function(lat, lng){
                 h3.appendChild(riverNameText);
                 oneRiver.appendChild(h3);
                 
+                var units = stuff.search("Units");
+                units = units + 10;
+                units = stuff.substring(units);
+                var endSearchUnits = units.search("\"");
+                
+                units = units.substring (0, endSearchUnits);
+                console.log(units);
+                
                 
                 var latestValue = stuff.search("LatestValue");
                 latestValue = latestValue + 16;
@@ -99,7 +145,7 @@ var localRiverLevel = function(lat, lng){
                 latestValue = latestValue.substring(0, endSearchValue);
                 console.log(latestValue);
                 
-                var latestValueText = document.createTextNode(latestValue);
+                var latestValueText = document.createTextNode(latestValue + units);
                 var h5 = document.createElement('h5');
                 h5.appendChild(latestValueText);
                 oneRiver.appendChild(h5);
@@ -111,7 +157,38 @@ var localRiverLevel = function(lat, lng){
                 //console.log(endSearchUrl);
                 riverURL = riverURL.substring(0, endSearchUrl);
                 console.log(riverURL);
-                //var riverFloodLevelLink = document.createElement("a");
+                
+               
+                
+                
+                
+                var linkDiv = document.createElement('div');
+                linkDiv.setAttribute("class", "floodInfoLink");
+                var a = document.createElement("a");
+                
+                var h6 = document.createElement("h6");
+                
+                var buttonText=document.createTextNode("More Info");
+                a.appendChild(buttonText);
+                a.setAttribute("href", riverURL);
+                h6.appendChild(a);
+                linkDiv.appendChild(h6);
+                oneRiver.appendChild(linkDiv);
+                
+                
+               marker.bindPopup(riverName + " " + latestValue + units + " " + riverURL);
+                
+                
+                //type="reset" onclick="location.href='http://www.example.com'"
+                
+                
+                /*<form>
+                <button formaction="http://stackoverflow.com">Go to stackoverflow!</button>
+                </form>
+                
+                document.getElementsByTagName("H1")[0].setAttribute("class", "democlass");
+                */
+                
                 
                 
                 section.appendChild(oneRiver);
@@ -121,7 +198,9 @@ var localRiverLevel = function(lat, lng){
                 floodcount++;
             };
             
+            
             body.insertBefore(section, body.childNodes[3]);
+            
             
             
             

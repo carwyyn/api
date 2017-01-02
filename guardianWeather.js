@@ -11,7 +11,7 @@ var processResponse = function(){
     
     //get the main story from the response
     i = 0;
-    while (i<2){
+    while (i<5){
         
         var top_story = data.response.results[i].webTitle
         console.log(top_story);
@@ -30,12 +30,31 @@ var processResponse = function(){
         var text = document.createTextNode(top_story);
         var h3 = document.createElement('h3');
         var section = document.createElement('section');
+        section.className = "guardian";
         h3.appendChild(text);
         section.appendChild(h3);
         body.insertBefore(section, body.childNodes[3]);
     
         var backsec = document.getElementsByTagName('section')[0];
         backsec.style.backgroundImage = 'url("'+img+'")';
+        
+        var pageLink = data.response.results[i].webUrl;
+        console.log(pageLink);
+        
+        var link = document.createElement('a');
+        var button = document.createElement('button');
+        var checkItOut = document.createTextNode('Check it out >>');
+        
+        link.setAttribute("href", pageLink);
+        button.setAttribute("type", "button");
+        button.appendChild(checkItOut);
+        link.appendChild(button);
+        section.appendChild(link);
+        
+        
+        
+        
+        
         
         //puts the image into the main page
         //  var mainImg=document.createElement("img");
